@@ -5,3 +5,4 @@
 #include "CoreMinimal.h"
 
 #define CUSTOM_DEPTH_RED 250
+#define ECC_Potion ECollisionChannel::ECC_GameTraceChannel1

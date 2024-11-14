@@ -20,10 +20,10 @@ void UTargetDataUnderMouse::Activate()
 	}
 	else
 	{
-		const FGameplayAbilitySpecHandle DataHandle = GetAbilitySpecHandle();
+		const FGameplayAbilitySpecHandle SpecHandle = GetAbilitySpecHandle();
 		const FPredictionKey ActivationPredictionKey = GetActivationPredictionKey();
-		AbilitySystemComponent.Get()->AbilityTargetDataSetDelegate(DataHandle, ActivationPredictionKey).AddUObject(this, &UTargetDataUnderMouse::OnTargetDataReplicatedCallback);
-		const bool bCalledDelegate = AbilitySystemComponent.Get()->CallReplicatedTargetDataDelegatesIfSet(DataHandle, ActivationPredictionKey);
+		AbilitySystemComponent.Get()->AbilityTargetDataSetDelegate(SpecHandle, ActivationPredictionKey).AddUObject(this, &UTargetDataUnderMouse::OnTargetDataReplicatedCallback);
+		const bool bCalledDelegate = AbilitySystemComponent.Get()->CallReplicatedTargetDataDelegatesIfSet(SpecHandle, ActivationPredictionKey);
 		if(!bCalledDelegate)
 		{
 			SetWaitingOnRemotePlayerData();
@@ -34,7 +34,6 @@ void UTargetDataUnderMouse::Activate()
 void UTargetDataUnderMouse::SendMouseCursorData()
 {
 	FScopedPredictionWindow ScopedPrediction(AbilitySystemComponent.Get());
-	
 	APlayerController* PC = Ability->GetCurrentActorInfo()->PlayerController.Get();
 	if(PC)
 	{
