@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameplayEffectTypes.h"
 #include "AuraProjectile.generated.h"
+
 
 class UNiagaraSystem;
 class USphereComponent;
@@ -21,6 +23,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
+
+	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = "true"))
+	FGameplayEffectSpecHandle DamageEffectSpecHandle;
 
 protected:
 

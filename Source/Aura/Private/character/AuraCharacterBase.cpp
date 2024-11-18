@@ -2,7 +2,7 @@
 
 
 #include "character/AuraCharacterBase.h"
-
+#include "Components/CapsuleComponent.h"
 #include "AbilitySystemComponent.h"
 #include "GameplayEffectTypes.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
@@ -11,6 +11,9 @@
 AAuraCharacterBase::AAuraCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
+
+	GetCapsuleComponent()->SetGenerateOverlapEvents(false);
+	GetMesh()->SetGenerateOverlapEvents(true);
 
 	Weapon=CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(),FName("WeaponHandSocket"));
