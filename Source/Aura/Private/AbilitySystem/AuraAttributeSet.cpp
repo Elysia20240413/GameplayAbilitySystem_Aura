@@ -9,6 +9,8 @@
 #include "GameplayEffectExtension.h"
 #include "GameFramework/Character.h"
 #include "Interface/CombatInterface.h"
+#include "Kismet/GameplayStatics.h"
+#include "Player/AuraPlayerController.h"
 
  UAuraAttributeSet::UAuraAttributeSet()
 {
@@ -93,12 +95,11 @@ void UAuraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData
 	{
 		Props.TargetAvatarActor=Data.Target.AbilityActorInfo->AvatarActor.Get();
 		Props.TargetController=Data.Target.AbilityActorInfo->PlayerController.Get();
-		Props.SourceCharacter=Cast<ACharacter>(Props.TargetAvatarActor);
+		Props.TargetCharacter=Cast<ACharacter>(Props.TargetAvatarActor);
 		Props.TargetASC=UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Props.TargetAvatarActor);
 	}
 }
-
-void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
+ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
 {
 	Super::PostGameplayEffectExecute(Data);
 	
@@ -133,6 +134,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		}
 	}
 }
+
 
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 {
