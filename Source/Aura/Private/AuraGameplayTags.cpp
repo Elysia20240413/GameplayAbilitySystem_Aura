@@ -118,4 +118,8 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 
 	GameplayTags.Effect_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Effect.HitReact"));
+
+	GameplayTags.Abilities_Attack = UGameplayTagsManager::Get().AddNativeGameplayTag(
+			FName("Abilities.Attack"));
+	
 }
