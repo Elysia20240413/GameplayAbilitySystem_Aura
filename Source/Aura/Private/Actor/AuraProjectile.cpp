@@ -73,7 +73,6 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 		{
 			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
 			TargetASC->ApplyGameplayEffectSpecToSelf(*TagEffectSpecHandle.Data.Get());
-			
 		}
 		
 		Destroy();

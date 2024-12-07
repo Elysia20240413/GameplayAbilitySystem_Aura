@@ -54,7 +54,10 @@ void AAuraCharacter::InitAbilityActorInfo()
 	AAuraPlayerState* AuraPlayerState=GetPlayerState<AAuraPlayerState>();
 	if(AuraPlayerState)
 	{
+		// Set the ASC on the Server. Clients do this in OnRep_PlayerState()
 		AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this);
+		// AI won't have PlayerControllers so we can init again here just to be sure.
+		// No harm in initing twice for heroes that have PlayerControllers.
 		Cast<UAuraAbilitySystemComponent>(AuraPlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
 		AbilitySystemComponent=AuraPlayerState->GetAbilitySystemComponent();
 		AttributeSet=AuraPlayerState->GetAttributeSet();
