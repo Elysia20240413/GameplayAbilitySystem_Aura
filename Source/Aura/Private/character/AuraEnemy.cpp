@@ -65,7 +65,6 @@ void AAuraEnemy::Die()
 	Super::Die();
 }
 
-
 void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
@@ -95,11 +94,12 @@ void AAuraEnemy::BeginPlay()
 				OnMaxHealthChanged.Broadcast(Data.NewValue);
 			}
 		);
-
+		/*
 		AbilitySystemComponent->RegisterGameplayTagEvent(FAuraGameplayTags::Get().Effect_HitReact, EGameplayTagEventType::NewOrRemoved).AddUObject(
 			this,
 			&AAuraEnemy::HitReactTagChanged
 		);
+		*/
 
 		OnHealthChanged.Broadcast(AuraAS->GetHealth());
 		OnMaxHealthChanged.Broadcast(AuraAS->GetMaxHealth());

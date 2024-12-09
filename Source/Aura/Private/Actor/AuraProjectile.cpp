@@ -16,7 +16,6 @@ AAuraProjectile::AAuraProjectile()
 {
 
 	PrimaryActorTick.bCanEverTick = false;
-	SetReplicates(true);
 
 	Sphere = CreateDefaultSubobject<USphereComponent>("Sphere");
 	SetRootComponent(Sphere);
@@ -30,7 +29,8 @@ AAuraProjectile::AAuraProjectile()
 	ProjectileMovement->InitialSpeed = 550.f;
 	ProjectileMovement->MaxSpeed = 550.f;
 	ProjectileMovement->ProjectileGravityScale = 0.f;
-	
+
+	bReplicates = true;
 }
 
 
@@ -72,7 +72,7 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 		if(UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor))
 		{
 			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
-			TargetASC->ApplyGameplayEffectSpecToSelf(*TagEffectSpecHandle.Data.Get());
+			UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(OtherActor, ImpactTag, FGameplayEventData());
 		}
 		
 		Destroy();

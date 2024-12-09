@@ -34,4 +34,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="AuraAbilitySystemLibary|CharacterClassDefault")
 	static UCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintCallable, Category="AuraAbilitySystemLibary|GameplayMechanics")
+	static void GetLivePlayerWithRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors, const TArray<AActor*>& ActorsToIgnore, float Radius, const FVector& SphereOrigin);
 };

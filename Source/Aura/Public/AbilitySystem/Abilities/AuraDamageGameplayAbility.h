@@ -13,7 +13,9 @@ UCLASS()
 class AURA_API UAuraDamageGameplayAbility : public UAuraGameplayAbility
 {
 	GENERATED_BODY()
-
+public:
+	UFUNCTION(BlueprintCallable)
+	void CauseDamage(AActor* TargetActor);
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
@@ -22,5 +24,8 @@ protected:
 	TSubclassOf<UGameplayEffect> TagEffectClass;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
-	TMap<FGameplayTag, FScalableFloat> DamageType;
+	TMap<FGameplayTag, FScalableFloat> DamageTypes;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FGameplayTag ImpactTag;
 };

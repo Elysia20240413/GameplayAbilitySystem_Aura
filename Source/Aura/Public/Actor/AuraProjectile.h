@@ -27,9 +27,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = "true"))
 	FGameplayEffectSpecHandle DamageEffectSpecHandle;
 
-	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = "true"))
-	FGameplayEffectSpecHandle TagEffectSpecHandle;
-
+	UPROPERTY()
+	FGameplayTag ImpactTag;
 protected:
 
 	virtual void BeginPlay() override;
@@ -57,4 +56,5 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<UAudioComponent> LoopingSoundComponent;
+	
 };
